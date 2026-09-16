@@ -42,10 +42,7 @@ def get_translations(lang: str):
 def get_languages():
     language_names = {
         "en": "English",
-        "cs": "Čeština",
-        "de": "Deutsch",
-        "ru": "Русский",
-        "es": "Español",
+        "pl": "Polski",
     }
     return [
         {"code": lang, "name": language_names.get(lang, lang)}

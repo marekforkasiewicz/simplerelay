@@ -55,18 +55,12 @@ async def send_verification_email(to: str, token: str, lang: str = "en"):
 
     subjects = {
         "en": "Verify your SimpleRelay account",
-        "cs": "Ověřte svůj SimpleRelay účet",
-        "de": "Bestätigen Sie Ihr SimpleRelay-Konto",
-        "ru": "Подтвердите ваш аккаунт SimpleRelay",
-        "es": "Verifica tu cuenta SimpleRelay",
+        "pl": "Zweryfikuj swoje konto SimpleRelay",
     }
 
     bodies = {
         "en": f"Click to verify your email:\n\n{link}\n\nThis link expires in 24 hours.",
-        "cs": f"Klikněte pro ověření emailu:\n\n{link}\n\nOdkaz platí 24 hodin.",
-        "de": f"Klicken Sie zur Bestätigung Ihrer E-Mail:\n\n{link}\n\nDieser Link ist 24 Stunden gültig.",
-        "ru": f"Нажмите для подтверждения email:\n\n{link}\n\nСсылка действительна 24 часа.",
-        "es": f"Haz clic para verificar tu correo:\n\n{link}\n\nEste enlace expira en 24 horas.",
+        "pl": f"Kliknij, aby zweryfikować swój e-mail:\n\n{link}\n\nLink jest ważny 24 godziny.",
     }
 
     await send_email(
@@ -82,18 +76,12 @@ async def send_reset_email(to: str, token: str, lang: str = "en"):
 
     subjects = {
         "en": "Reset your SimpleRelay password",
-        "cs": "Obnovení hesla SimpleRelay",
-        "de": "SimpleRelay-Passwort zurücksetzen",
-        "ru": "Сброс пароля SimpleRelay",
-        "es": "Restablecer contraseña SimpleRelay",
+        "pl": "Zresetuj swoje hasło SimpleRelay",
     }
 
     bodies = {
         "en": f"Click to reset your password:\n\n{link}\n\nThis link expires in 1 hour.",
-        "cs": f"Klikněte pro obnovení hesla:\n\n{link}\n\nOdkaz platí 1 hodinu.",
-        "de": f"Klicken Sie zum Zurücksetzen Ihres Passworts:\n\n{link}\n\nDieser Link ist 1 Stunde gültig.",
-        "ru": f"Нажмите для сброса пароля:\n\n{link}\n\nСсылка действительна 1 час.",
-        "es": f"Haz clic para restablecer tu contraseña:\n\n{link}\n\nEste enlace expira en 1 hora.",
+        "pl": f"Kliknij, aby zresetować hasło:\n\n{link}\n\nLink jest ważny 1 godzinę.",
     }
 
     await send_email(
