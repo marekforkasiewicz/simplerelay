@@ -139,8 +139,8 @@ message_size_limit = 52428800
 mailbox_size_limit = 0
 
 # Pass environment variables to pipe transports (pipe_transport.py needs DB access)
-import_environment = RELAY_DATABASE_URL RELAY_FERNET_KEY RELAY_PUBLIC_IP TZ
-export_environment = RELAY_DATABASE_URL RELAY_FERNET_KEY RELAY_PUBLIC_IP TZ
+import_environment = RELAY_DATABASE_URL RELAY_SECRET_KEY RELAY_PUBLIC_IP TZ
+export_environment = RELAY_DATABASE_URL RELAY_SECRET_KEY RELAY_PUBLIC_IP TZ
 """
 
     return config
