@@ -113,10 +113,6 @@ def check_access(client_ip_str, sender):
     if not client_ip_str or not sender:
         return False, "missing client_address or sender"
 
-    # Always allow localhost (internal test endpoint / bounces)
-    if client_ip_str in ("127.0.0.1", "::1"):
-        return True, "localhost"
-
     try:
         client_ip = ipaddress.ip_address(client_ip_str)
     except ValueError:
