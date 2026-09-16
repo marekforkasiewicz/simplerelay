@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import LanguageSwitcher from '../components/LanguageSwitcher';
+import { Zap } from 'lucide-react';
 
 export default function Login({ onLogin }) {
   const { t } = useTranslation();
@@ -66,7 +67,7 @@ export default function Login({ onLogin }) {
       <div className="auth-card">
         <div style={{ marginBottom: 20 }}><LanguageSwitcher /></div>
         <div className="logo" style={{ justifyContent: 'center', marginBottom: 24 }}>
-          <span className="logo-icon">⚡</span>
+          <span className="logo-icon"><Zap size={20} /></span>
           <span className="logo-text" style={{ fontSize: 24 }}>{t('app.name')}</span>
         </div>
 

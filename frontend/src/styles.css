@@ -65,7 +65,9 @@ body {
 }
 
 .logo-icon {
-  font-size: 24px;
+  display: inline-flex;
+  align-items: center;
+  color: var(--accent);
 }
 
 .logo-text {
@@ -106,9 +108,10 @@ body {
 }
 
 .nav-icon {
-  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 20px;
-  text-align: center;
 }
 
 .sidebar-footer {
@@ -496,8 +499,11 @@ select.form-input {
 }
 
 .empty-state-icon {
-  font-size: 48px;
+  display: flex;
+  justify-content: center;
   margin-bottom: 16px;
+  color: var(--text-muted);
+  opacity: 0.5;
 }
 
 .empty-state-text {

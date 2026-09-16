@@ -1,6 +1,7 @@
 import { apiFetch } from '../api';
 import { useTranslation } from 'react-i18next';
 import { useState, useEffect } from 'react';
+import { Search, X, ClipboardList, ChevronLeft, ChevronRight } from 'lucide-react';
 
 export default function Logs() {
   const { t } = useTranslation();
@@ -69,9 +70,9 @@ export default function Logs() {
             onKeyDown={e => e.key === 'Enter' && doSearch()}
             style={{ padding: '4px 8px', fontSize: 13, width: 200 }}
           />
-          <button className="btn btn-sm btn-secondary" onClick={doSearch}>🔍</button>
+          <button className="btn btn-sm btn-secondary" onClick={doSearch}><Search size={14} /></button>
           {search && (
-            <button className="btn btn-sm btn-secondary" onClick={() => { setSearchInput(''); setSearch(''); }}>✗</button>
+            <button className="btn btn-sm btn-secondary" onClick={() => { setSearchInput(''); setSearch(''); }}><X size={14} /></button>
           )}
         </div>
         <span style={{ fontSize: 12, color: 'var(--text-muted)' }}>
@@ -84,7 +85,7 @@ export default function Logs() {
       ) : logs.length === 0 ? (
         <div className="card">
           <div className="empty-state">
-            <div className="empty-state-icon">📋</div>
+            <div className="empty-state-icon"><ClipboardList size={48} /></div>
             <div className="empty-state-text">{t('logs.no_logs')}</div>
           </div>
         </div>
@@ -151,13 +152,13 @@ export default function Logs() {
           {/* Pagination */}
           <div style={{ display: 'flex', gap: 8, marginTop: 12, justifyContent: 'center' }}>
             <button className="btn btn-sm btn-secondary" disabled={offset === 0} onClick={() => setOffset(Math.max(0, offset - limit))}>
-              ← {t('common.back')}
+              <ChevronLeft size={14} style={{ verticalAlign: 'middle' }} /> {t('common.back')}
             </button>
             <span style={{ fontSize: 13, color: 'var(--text-muted)', lineHeight: '32px' }}>
               {offset + 1} - {offset + logs.length} / {total}
             </span>
             <button className="btn btn-sm btn-secondary" disabled={logs.length < limit} onClick={() => setOffset(offset + limit)}>
-              {t('common.next')} →
+              {t('common.next')} <ChevronRight size={14} style={{ verticalAlign: 'middle' }} />
             </button>
           </div>
         </>

@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useState, useEffect } from 'react';
 import { apiFetch } from '../api';
 import LanguageSwitcher from '../components/LanguageSwitcher';
+import { Zap, ArrowRight, Check, AlertTriangle } from 'lucide-react';
 
 const STEPS = 5;
 
@@ -218,7 +219,7 @@ export default function Wizard({ onComplete }) {
       <div className="wizard-header">
         <div style={{ marginBottom: 20 }}><LanguageSwitcher /></div>
         <div className="logo" style={{ justifyContent: 'center', marginBottom: 16 }}>
-          <span className="logo-icon">⚡</span>
+          <span className="logo-icon"><Zap size={22} /></span>
           <span className="logo-text" style={{ fontSize: 28 }}>{t('app.name')}</span>
         </div>
         <h1 className="wizard-title">{t('wizard.title')}</h1>
@@ -281,7 +282,7 @@ export default function Wizard({ onComplete }) {
                   rel="noopener noreferrer"
                   style={{ fontWeight: 600 }}
                 >
-                  {t('wizard.step2_app_password_link')} →
+                  {t('wizard.step2_app_password_link')} <ArrowRight size={14} style={{ verticalAlign: 'middle' }} />
                 </a>
               )}
             </div>
@@ -341,7 +342,7 @@ export default function Wizard({ onComplete }) {
           {dnsResults && dnsResults.map((r, i) => (
             <div key={i} className="dns-result">
               <span className={r.status === 'ok' ? 'dns-ok' : 'dns-missing'}>
-                {r.status === 'ok' ? '✓' : '⚠'}
+                {r.status === 'ok' ? <Check size={14} /> : <AlertTriangle size={14} />}
               </span>
               <div>
                 <strong>{t(`dns.${r.record_type}_record`)}</strong>
@@ -367,8 +368,8 @@ export default function Wizard({ onComplete }) {
           <h2 className="card-title" style={{ marginBottom: 8 }}>{t('wizard.step4_title')}</h2>
           <p style={{ color: 'var(--text-muted)', marginBottom: 16, fontSize: 14 }}>{t('wizard.step4_desc')}</p>
 
-          <div className="alert alert-error" style={{ marginBottom: 16 }}>
-            ⚠ {t('clients.access_required')}
+          <div className="alert alert-error" style={{ marginBottom: 16, display: 'flex', alignItems: 'center', gap: 6 }}>
+            <AlertTriangle size={14} /> {t('clients.access_required')}
           </div>
 
           <div className="form-group">

@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useState, useEffect } from 'react';
+import { X, Plus, Globe, Check, Info } from 'lucide-react';
 
 const FALLBACK_DOMAINS = [
   { key: 'gmail', label: 'Gmail' },
@@ -133,8 +134,8 @@ export default function AdminProxies({ token }) {
     <div>
       <div className="page-header">
         <h1 className="page-title">{t('admin.proxies')}</h1>
-        <button className="btn btn-primary" onClick={() => setShowAdd(!showAdd)}>
-          {showAdd ? `✕ ${t('common.cancel')}` : `+ ${t('admin.proxy_add')}`}
+        <button className="btn btn-primary" onClick={() => setShowAdd(!showAdd)} style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+          {showAdd ? <><X size={14} /> {t('common.cancel')}</> : <><Plus size={14} /> {t('admin.proxy_add')}</>}
         </button>
       </div>
 
@@ -191,7 +192,7 @@ export default function AdminProxies({ token }) {
       {proxies.length === 0 && !showAdd ? (
         <div className="card">
           <div className="empty-state">
-            <div className="empty-state-icon">🌐</div>
+            <div className="empty-state-icon"><Globe size={48} /></div>
             <div className="empty-state-text">{t('admin.proxy_empty')}</div>
           </div>
         </div>
@@ -222,7 +223,7 @@ export default function AdminProxies({ token }) {
                     {tr?.loading ? '...' : t('admin.proxy_test')}
                   </button>
                   <button className="btn btn-danger btn-sm" onClick={() => deleteProxy(p.id, p.name)}>
-                    ✕
+                    <X size={14} />
                   </button>
                 </div>
 
@@ -232,10 +233,11 @@ export default function AdminProxies({ token }) {
                     fontSize: 13, fontFamily: 'monospace', marginBottom: 10, padding: '6px 10px',
                     borderRadius: 6, background: tr.success ? 'rgba(34,197,94,0.1)' : 'rgba(239,68,68,0.1)',
                     color: tr.success ? 'var(--success)' : 'var(--error)',
+                    display: 'flex', alignItems: 'center', gap: 6,
                   }}>
                     {tr.success
-                      ? `✓ IP: ${tr.ip}  •  ${tr.latency_ms}ms${tr.smtp_ok ? '  •  SMTP OK' : ''}`
-                      : `✕ ${tr.error || 'Connection failed'}`
+                      ? <><Check size={14} /> IP: {tr.ip}  •  {tr.latency_ms}ms{tr.smtp_ok ? '  •  SMTP OK' : ''}</>
+                      : <><X size={14} /> {tr.error || 'Connection failed'}</>
                     }
                   </div>
                 )}
@@ -260,8 +262,8 @@ export default function AdminProxies({ token }) {
                     );
                   })}
                   {!p.provider_types && (
-                    <span style={{ fontSize: 11, color: 'var(--warning)', fontStyle: 'italic', marginLeft: 4 }}>
-                      ⚡ {t('admin.proxy_fallback_hint')}
+                    <span style={{ fontSize: 11, color: 'var(--warning)', fontStyle: 'italic', marginLeft: 4, display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+                      <Info size={12} /> {t('admin.proxy_fallback_hint')}
                     </span>
                   )}
                 </div>

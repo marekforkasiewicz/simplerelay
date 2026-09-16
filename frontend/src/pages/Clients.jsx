@@ -1,6 +1,7 @@
 import { apiFetch } from '../api';
 import { useTranslation } from 'react-i18next';
 import { useState, useEffect } from 'react';
+import { Mail, KeyRound, X, Lock, AlertTriangle } from 'lucide-react';
 
 export default function Clients() {
   const { t } = useTranslation();
@@ -152,7 +153,7 @@ export default function Clients() {
       {Object.keys(grouped).length > 0 ? (
         Object.entries(grouped).map(([email, rules]) => (
           <div className="card" key={email} style={{ marginBottom: 12 }}>
-            <div style={{ fontWeight: 600, fontSize: 15, marginBottom: 10 }}>📧 {email}</div>
+            <div style={{ fontWeight: 600, fontSize: 15, marginBottom: 10, display: 'flex', alignItems: 'center', gap: 6 }}><Mail size={16} /> {email}</div>
             {rules.map(c => (
               <div key={c.id} style={{
                 display: 'flex', alignItems: 'center', justifyContent: 'space-between',
@@ -176,8 +177,8 @@ export default function Clients() {
                     <div style={{ display: 'flex', gap: 4 }}>
                       <button className={`badge ${c.is_active ? 'badge-success' : 'badge-error'}`} style={{ cursor: 'pointer', border: 'none', fontSize: 11 }} onClick={() => toggleClient(c.id)}>{c.is_active ? t('common.enabled') : t('common.disabled')}</button>
                       <button className="btn btn-secondary btn-sm" onClick={() => startEdit(c)} style={{ padding: '2px 8px', fontSize: 11 }}>{t('common.edit')}</button>
-                      {c.client_type === 'smtp_auth' && <button className="btn btn-secondary btn-sm" onClick={() => regeneratePassword(c.id)} style={{ padding: '2px 8px', fontSize: 11 }}>🔑</button>}
-                      <button className="btn btn-danger btn-sm" onClick={() => deleteClient(c.id, c.name)} style={{ padding: '2px 8px', fontSize: 11 }}>✗</button>
+                      {c.client_type === 'smtp_auth' && <button className="btn btn-secondary btn-sm" onClick={() => regeneratePassword(c.id)} style={{ padding: '2px 8px', fontSize: 11 }}><KeyRound size={12} /></button>}
+                      <button className="btn btn-danger btn-sm" onClick={() => deleteClient(c.id, c.name)} style={{ padding: '2px 8px', fontSize: 11 }}><X size={12} /></button>
                     </div>
                   </>
                 )}
@@ -196,7 +197,7 @@ export default function Clients() {
         <div className="card">
           <div className="alert alert-warning">{t('clients.warning_open')}</div>
           <div className="empty-state">
-            <div className="empty-state-icon">🔒</div>
+            <div className="empty-state-icon"><Lock size={48} /></div>
             <div className="empty-state-text">{t('clients.no_clients')}</div>
           </div>
         </div>
@@ -205,8 +206,8 @@ export default function Clients() {
       {/* Show emails without any rules */}
       {providers.filter(p => !grouped[p.email]).map(p => (
         <div className="card" key={p.id} style={{ marginBottom: 12, borderLeft: '3px solid var(--color-error, #e53e3e)' }}>
-          <div style={{ fontWeight: 600, fontSize: 15, marginBottom: 6 }}>📧 {p.email}</div>
-          <div className="alert alert-error" style={{ margin: 0 }}>⚠ {t('clients.no_clients_provider')}</div>
+          <div style={{ fontWeight: 600, fontSize: 15, marginBottom: 6, display: 'flex', alignItems: 'center', gap: 6 }}><Mail size={16} /> {p.email}</div>
+          <div className="alert alert-error" style={{ margin: 0, display: 'flex', alignItems: 'center', gap: 6 }}><AlertTriangle size={14} /> {t('clients.no_clients_provider')}</div>
         </div>
       ))}
     </div>

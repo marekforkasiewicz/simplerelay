@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useState, useEffect } from 'react';
+import { Mail, Settings, X, Check } from 'lucide-react';
 
 export default function AdminLimits({ token }) {
   const { t } = useTranslation();
@@ -30,9 +31,9 @@ export default function AdminLimits({ token }) {
   };
 
   const providerIcons = {
-    gmail: '📧', outlook: '📨', yahoo: '📩', seznam: '📬',
-    mailcz: '📭', icloud: '🍎', amazon_ses: '☁️', sendgrid: '📤',
-    custom: '⚙️',
+    gmail: <Mail size={14} />, outlook: <Mail size={14} />, yahoo: <Mail size={14} />, seznam: <Mail size={14} />,
+    mailcz: <Mail size={14} />, icloud: <Mail size={14} />, amazon_ses: <Mail size={14} />, sendgrid: <Mail size={14} />,
+    custom: <Settings size={14} />,
   };
 
   return (
@@ -58,7 +59,7 @@ export default function AdminLimits({ token }) {
             {limits.map(lim => (
               <tr key={lim.provider_type}>
                 <td>
-                  <span style={{ marginRight: 8 }}>{providerIcons[lim.provider_type] || '📧'}</span>
+                  <span style={{ marginRight: 8, display: 'inline-flex', verticalAlign: 'middle' }}>{providerIcons[lim.provider_type] || <Mail size={14} />}</span>
                   <strong>{lim.provider_type}</strong>
                 </td>
                 <td>
@@ -85,10 +86,10 @@ export default function AdminLimits({ token }) {
                       <button className="btn btn-primary btn-sm" onClick={() => save(lim.provider_type)}>
                         {t('admin.daily_limit_save')}
                       </button>
-                      <button className="btn btn-secondary btn-sm" onClick={() => setEditing(null)}>✕</button>
+                      <button className="btn btn-secondary btn-sm" onClick={() => setEditing(null)}><X size={12} /></button>
                     </div>
                   ) : saved === lim.provider_type ? (
-                    <span style={{ color: 'var(--success)', fontSize: 13 }}>✓ {t('admin.daily_limit_saved')}</span>
+                    <span style={{ color: 'var(--success)', fontSize: 13, display: 'inline-flex', alignItems: 'center', gap: 4 }}><Check size={14} /> {t('admin.daily_limit_saved')}</span>
                   ) : (
                     <button
                       className="btn btn-secondary btn-sm"

@@ -1,6 +1,7 @@
 import { apiGet, apiFetch } from '../api';
 import { useTranslation } from 'react-i18next';
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { Mail, AlertTriangle, ArrowRight, Lock, Eye, EyeOff, Check, X, KeyRound, Search } from 'lucide-react';
 
 const APP_PASSWORD_PROVIDERS = ['gmail', 'outlook', 'yahoo'];
 
@@ -299,7 +300,7 @@ export default function Providers() {
               </div>
               {appPasswordUrl && (
                 <a href={appPasswordUrl} target="_blank" rel="noopener noreferrer" style={{ fontWeight: 600, color: '#fbbf24' }}>
-                  {t('wizard.step2_app_password_link')} →
+                  {t('wizard.step2_app_password_link')} <ArrowRight size={14} style={{ verticalAlign: 'middle' }} />
                 </a>
               )}
             </div>
@@ -345,7 +346,7 @@ export default function Providers() {
       {providers.length === 0 && !showAdd ? (
         <div className="card">
           <div className="empty-state">
-            <div className="empty-state-icon">📧</div>
+            <div className="empty-state-icon"><Mail size={48} /></div>
             <div className="empty-state-text">{t('providers.no_providers')}</div>
           </div>
         </div>
@@ -363,15 +364,15 @@ export default function Providers() {
                 </div>
                 <div style={{ display: 'flex', gap: 6 }}>
                   {!hasAccess && (
-                    <span className="badge badge-warning">⚠ open relay</span>
+                    <span className="badge badge-warning" style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}><AlertTriangle size={12} /> open relay</span>
                   )}
                   <span className={`badge ${p.status === 'active' && hasAccess ? 'badge-success' : 'badge-error'}`}>
                     {hasAccess ? t(`providers.status_${p.status}`) : t('common.disabled')}
                   </span>
                 </div>
               </div>
-              <div style={{ color: 'var(--text-muted)', fontSize: 13, marginBottom: 12 }}>
-                {p.email} → {p.smtp_host}:{p.smtp_port}
+              <div style={{ color: 'var(--text-muted)', fontSize: 13, marginBottom: 12, display: 'flex', alignItems: 'center', gap: 6 }}>
+                {p.email} <ArrowRight size={12} /> {p.smtp_host}:{p.smtp_port}
               </div>
               <div style={{ fontSize: 13, color: 'var(--text-muted)', marginBottom: 12 }}>
                 {p.daily_limit
@@ -385,8 +386,8 @@ export default function Providers() {
                 </div>
               )}
               {p.is_locked && p.locked_reason && (
-                <div className="alert alert-error" style={{ fontSize: 13, marginBottom: 12 }}>
-                  🔒 {p.locked_reason}
+                <div className="alert alert-error" style={{ fontSize: 13, marginBottom: 12, display: 'flex', alignItems: 'center', gap: 6 }}>
+                  <Lock size={14} /> {p.locked_reason}
                 </div>
               )}
 
@@ -419,7 +420,7 @@ export default function Providers() {
               {/* Access control per provider */}
               <div style={{ marginBottom: 12 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                  <strong style={{ fontSize: 13 }}>🔒 {t('clients.title')}</strong>
+                  <strong style={{ fontSize: 13, display: 'inline-flex', alignItems: 'center', gap: 6 }}><Lock size={14} /> {t('clients.title')}</strong>
                   <button
                     className="btn btn-secondary btn-sm"
                     onClick={() => {
@@ -517,7 +518,7 @@ export default function Providers() {
                                         style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '0 4px', fontSize: 16, color: '#ffffff' }}
                                         title={showPassword[c.id] ? 'Hide' : 'Show'}
                                       >
-                                        {showPassword[c.id] ? '🙈' : '👁'}
+                                        {showPassword[c.id] ? <EyeOff size={14} /> : <Eye size={14} />}
                                       </button>
                                     </>
                                   ) : '***'
@@ -531,13 +532,13 @@ export default function Providers() {
                                 onClick={() => toggleClient(c.id, p.id)}
                                 title={c.is_active ? t('common.enabled') : t('common.disabled')}
                               >
-                                {c.is_active ? '✓' : '✗'}
+                                {c.is_active ? <Check size={12} /> : <X size={12} />}
                               </button>
                               <button className="btn btn-secondary btn-sm" onClick={() => startEdit(c)} style={{ padding: '2px 8px', fontSize: 11 }}>{t('common.edit')}</button>
                               {c.client_type === 'smtp_auth' && (
-                                <button className="btn btn-secondary btn-sm" onClick={() => regeneratePassword(c.id, p.id)} style={{ padding: '2px 8px', fontSize: 11 }}>🔑</button>
+                                <button className="btn btn-secondary btn-sm" onClick={() => regeneratePassword(c.id, p.id)} style={{ padding: '2px 8px', fontSize: 11 }}><KeyRound size={12} /></button>
                               )}
-                              <button className="btn btn-danger btn-sm" onClick={() => deleteClient(c.id, p.id)} style={{ padding: '2px 8px', fontSize: 11 }}>✗</button>
+                              <button className="btn btn-danger btn-sm" onClick={() => deleteClient(c.id, p.id)} style={{ padding: '2px 8px', fontSize: 11 }}><X size={12} /></button>
                             </div>
                           </>
                         )}
@@ -545,8 +546,8 @@ export default function Providers() {
                     ))}
                   </div>
                 ) : (
-                  <div className="alert alert-error" style={{ fontSize: 13 }}>
-                    ⚠ {t('clients.no_clients_provider')}
+                  <div className="alert alert-error" style={{ fontSize: 13, display: 'flex', alignItems: 'center', gap: 6 }}>
+                    <AlertTriangle size={14} /> {t('clients.no_clients_provider')}
                   </div>
                 )}
 
@@ -562,8 +563,8 @@ export default function Providers() {
 
               {/* Provider actions */}
               <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-                <button className="btn btn-secondary btn-sm" onClick={() => checkDns(p)}>
-                  {dnsLoading === p.id ? t('common.loading') : '🔍 DNS'}
+                <button className="btn btn-secondary btn-sm" onClick={() => checkDns(p)} style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                  {dnsLoading === p.id ? t('common.loading') : <><Search size={14} /> DNS</>}
                 </button>
                 <button className="btn btn-secondary btn-sm" onClick={() => testProvider(p.id)}>{t('providers.test')}</button>
                 <button className="btn btn-secondary btn-sm" onClick={() => setTestingId(testingId === p.id ? null : p.id)}>{t('wizard.step5_test_send')}</button>
@@ -576,7 +577,7 @@ export default function Providers() {
                   {dnsResults[p.id].map((r, i) => (
                     <div key={i} className="dns-result">
                       <span className={r.status === 'ok' ? 'dns-ok' : 'dns-missing'}>
-                        {r.status === 'ok' ? '✓' : '✗'}
+                        {r.status === 'ok' ? <Check size={14} /> : <X size={14} />}
                       </span>
                       <div>
                         <strong>{t(`dns.${r.record_type}_record`)}</strong>

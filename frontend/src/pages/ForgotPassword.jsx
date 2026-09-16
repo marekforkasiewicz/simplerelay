@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Zap } from 'lucide-react';
 
 export default function ForgotPassword() {
   const { t } = useTranslation();
@@ -26,7 +27,7 @@ export default function ForgotPassword() {
     <div className="auth-page">
       <div className="auth-card">
         <div className="logo" style={{ justifyContent: 'center', marginBottom: 24 }}>
-          <span className="logo-icon">⚡</span>
+          <span className="logo-icon"><Zap size={20} /></span>
           <span className="logo-text" style={{ fontSize: 24 }}>{t('app.name')}</span>
         </div>
 

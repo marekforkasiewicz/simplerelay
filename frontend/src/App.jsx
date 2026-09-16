@@ -1,6 +1,7 @@
 import { Routes, Route, NavLink, Navigate, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useState, useEffect, useCallback } from 'react';
+import { Zap, LayoutDashboard, Mail, ClipboardList, Users, Globe } from 'lucide-react';
 import Dashboard from './pages/Dashboard';
 import Providers from './pages/Providers';
 import Logs from './pages/Logs';
@@ -98,22 +99,22 @@ export default function App() {
       <nav className="sidebar">
         <div className="sidebar-header">
           <div className="logo">
-            <span className="logo-icon">⚡</span>
+            <span className="logo-icon"><Zap size={20} /></span>
             <span className="logo-text">{t('app.name')}</span>
           </div>
         </div>
 
         <div className="nav-links">
           <NavLink to="/dashboard" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-            <span className="nav-icon">📊</span>
+            <span className="nav-icon"><LayoutDashboard size={16} /></span>
             {t('nav.dashboard')}
           </NavLink>
           <NavLink to="/providers" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-            <span className="nav-icon">📧</span>
+            <span className="nav-icon"><Mail size={16} /></span>
             {t('nav.providers')}
           </NavLink>
           <NavLink to="/logs" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-            <span className="nav-icon">📋</span>
+            <span className="nav-icon"><ClipboardList size={16} /></span>
             {t('nav.logs')}
           </NavLink>
 
@@ -121,19 +122,19 @@ export default function App() {
             <>
               <div style={{ borderTop: '1px solid var(--border)', margin: '8px 0' }} />
               <NavLink to="/admin/users" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-                <span className="nav-icon">👥</span>
+                <span className="nav-icon"><Users size={16} /></span>
                 {t('admin.users')}
               </NavLink>
               <NavLink to="/admin/proxies" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-                <span className="nav-icon">🌐</span>
+                <span className="nav-icon"><Globe size={16} /></span>
                 {t('admin.proxies')}
               </NavLink>
               <NavLink to="/admin/limits" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-                <span className="nav-icon">📊</span>
+                <span className="nav-icon"><LayoutDashboard size={16} /></span>
                 {t('admin.provider_limits')}
               </NavLink>
               <NavLink to="/admin/logs" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-                <span className="nav-icon">📋</span>
+                <span className="nav-icon"><ClipboardList size={16} /></span>
                 {t('admin.logs')}
               </NavLink>
             </>
