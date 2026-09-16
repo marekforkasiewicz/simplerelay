@@ -9,7 +9,7 @@ class Settings(BaseSettings):
     public_ip: str = ""
     web_port: int = 8080
     default_language: str = "en"
-    supported_languages: list[str] = ["en", "cs", "de", "ru", "es"]
+    supported_languages: list[str] = ["en", "cs", "de", "ru", "es", "pl"]
     data_dir: str = "/data"
 
     # Default admin account

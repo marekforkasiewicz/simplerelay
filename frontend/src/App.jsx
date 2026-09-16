@@ -6,7 +6,6 @@ import Providers from './pages/Providers';
 import Logs from './pages/Logs';
 import Wizard from './pages/Wizard';
 import Login from './pages/Login';
-import Register from './pages/Register';
 import ForgotPassword from './pages/ForgotPassword';
 import VerifyEmail from './pages/VerifyEmail';
 import AdminUsers from './pages/AdminUsers';
@@ -74,7 +73,7 @@ export default function App() {
       <div className="app">
         <Routes>
           <Route path="/login" element={<Login onLogin={handleLogin} />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/register" element={<Navigate to="/login" replace />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/verify" element={<VerifyEmail />} />
           <Route path="*" element={<Navigate to="/login" replace />} />

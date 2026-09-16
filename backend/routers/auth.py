@@ -62,6 +62,8 @@ class TokenResponse(BaseModel):
 @router.post("/register")
 async def register(data: RegisterRequest, background_tasks: BackgroundTasks, db: Session = Depends(get_db)):
     """Register a new user account. Sends verification email."""
+    raise HTTPException(403, "Self-registration is disabled on this instance")
+
     existing = db.query(User).filter(
         func.lower(User.email) == data.email.lower()
     ).first()

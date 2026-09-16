@@ -104,9 +104,6 @@ export default function Login({ onLogin }) {
 
         <div className="auth-links">
           <Link to="/forgot-password">{t('auth.forgot_password')}</Link>
-          <br />
-          <span style={{ color: 'var(--text-muted)' }}>{t('auth.no_account')} </span>
-          <Link to="/register">{t('auth.register')}</Link>
         </div>
       </div>
     </div>
