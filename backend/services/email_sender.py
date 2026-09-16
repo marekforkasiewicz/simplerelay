@@ -49,7 +49,7 @@ async def send_email(to: str, subject: str, body: str) -> bool:
         return False
 
 
-async def send_verification_email(to: str, token: str, lang: str = "en"):
+async def send_verification_email(to: str, token: str, lang: str = "pl"):
     """Send email verification link."""
     link = f"{settings.base_url}/verify?token={token}"
 
@@ -70,7 +70,7 @@ async def send_verification_email(to: str, token: str, lang: str = "en"):
     )
 
 
-async def send_reset_email(to: str, token: str, lang: str = "en"):
+async def send_reset_email(to: str, token: str, lang: str = "pl"):
     """Send password reset link."""
     link = f"{settings.base_url}/reset-password?token={token}"
 

@@ -8,8 +8,8 @@ class Settings(BaseSettings):
     hostname: str = "relay.example.com"
     public_ip: str = ""
     web_port: int = 8080
-    default_language: str = "en"
-    supported_languages: list[str] = ["en", "pl"]
+    default_language: str = "pl"
+    supported_languages: list[str] = ["pl", "en"]
     data_dir: str = "/data"
 
     # Default admin account
